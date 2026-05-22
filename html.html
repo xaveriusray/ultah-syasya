@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday!</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #d62828; /* Merah estetik seperti di video */
+            color: #ffffff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 800px;
+            padding: 20px;
+            text-align: center;
+        }
+
+        /* Sistem Halaman (Page) */
+        .page {
+            display: none;
+            animation: fadeIn 0.8s ease forwards;
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            font-style: italic;
+        }
+
+        /* === PAGE 1: AMPLOPH === */
+        .envelope-wrapper {
+            cursor: pointer;
+            display: inline-block;
+            margin-top: 20px;
+            transition: transform 0.3s;
+        }
+
+        .envelope-wrapper:hover {
+            transform: scale(1.05);
+        }
+
+        /* Amplop CSS Sederhana (Bisa diganti gambar amplop asli) */
+        .envelope {
+            width: 280px;
+            height: 180px;
+            background: #fff3e0;
+            border-radius: 5px;
+            position: relative;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+            border: 4px dashed #d62828;
+        }
+
+        .wax-seal {
+            width: 50px;
+            height: 50px;
+            background: #9b2226;
+            border-radius: 50%;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            box-shadow: 0 4px 5px rgba(0,0,0,0.3);
+        }
+
+        /* === PAGE 2: MENU UTAMA === */
+        .menu-grid {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+            margin-top: 40px;
+        }
+
+        .menu-item {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 15px;
+            width: 180px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .menu-item:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-10px);
+            border-color: #ffffff;
+        }
+
+        .menu-item img {
+            width: 80px;
+            height: 80px;
+            object-fit: contain;
+            margin-bottom: 15px;
+        }
+
+        /* === PAGE 3, 4, 5: ISI KONTEN === */
+        .content-box {
+            background: white;
+            color: #333;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+            margin: 20px auto;
+            max-width: 600px;
+        }
+
+        .back-btn {
+            background: #00b4d8;
+            color: white;
+            border: none;
+            padding: 10px 25px;
+            font-size: 1rem;
+            border-radius: 20px;
+            cursor: pointer;
+            margin-top: 20px;
+            font-weight: bold;
+            transition: background 0.2s;
+        }
+
+        .back-btn:hover {
+            background: #0096c7;
+        }
+
+        /* Style Foto Kolase */
+        .scallop-frame {
+            border: 10px solid #fff;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            max-width: 100%;
+            height: auto;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+
+    <audio id="bgMusic" loop>
+        <source src="musik-andmesh.mp3" type="audio/mpeg">
+    </audio>
+
+    <div class="container">
+
+        <div id="page1" class="page active">
+            <h1>Press the Envelope</h1>
+            <div class="envelope-wrapper" onclick="openEnvelope()">
+                <div class="envelope">
+                    <div class="wax-seal"></div>
+                </div>
+            </div>
+        </div>
+
+        <div id="page2" class="page">
+            <h1>Choose the Surprise</h1>
+            <div class="menu-grid">
+                <div class="menu-item" onclick="goToPage('page3')">
+                    <img src="https://cdn-icons-png.flaticon.com/512/685/685655.png" alt="Journey">
+                    <h3>Journey</h3>
+                </div>
+                <div class="menu-item" onclick="goToPage('page4')">
+                    <img src="https://cdn-icons-png.flaticon.com/512/869/869854.png" alt="Moment">
+                    <h3>Moment</h3>
+                </div>
+                <div class="menu-item" onclick="goToPage('page5')">
+                    <img src="https://cdn-icons-png.flaticon.com/512/2304/2304227.png" alt="Playlist">
+                    <h3>Playlist</h3>
+                </div>
+            </div>
+        </div>
+
+        <div id="page3" class="page">
+            <div class="content-box">
+                <h2 style="margin-bottom: 15px;">Our Journey ✨</h2>
+                <img src="https://i.ibb.co.com/xq7XQD9y/poto-dia.png" alt="Doi" class="scallop-frame" style="width: 60%; margin-top: 15px;">
+                <p style="margin-top: 15px;">Hari demi hari yang kita lalui selalu penuh warna...</p>
+            </div>
+            <button class="back-btn" onclick="goToPage('page2')">TAP TO BACK</button>
+        </div>
+
+        <div id="page4" class="page">
+            <div class="content-box">
+                <h2 style="color: #d62828; margin-bottom: 15px;">My Love ❤️</h2>
+                <p style="font-size: 1.2rem; line-height: 1.6;">
+                    "Happy Birthday Syasya! You make every day brighter, every laugh louder, and my heart fuller. Here's to you—my joy, my home, my everything."
+                </p>
+                <img src="https://i.ibb.co.com/jvmfm6TB/poto-dia1.jpg" alt="Journey Foto" class="scallop-frame" style="width: 80%;">
+            </div>
+            <button class="back-btn" onclick="goToPage('page2')">TAP TO BACK</button>
+        </div>
+
+               <div id="page5" class="page">
+            <div class="content-box">
+                <h2 style="margin-bottom: 15px;">Syasya Favorite Song </h2>
+                <p style="margin-bottom: 15px; font-style: italic; color: #666;">"Just give me your forever... I want you to know that you'll be the one"</p>
+                
+                <div style="position: relative; width: 100%; border-radius: 10px; overflow: hidden; box-shadow: 0 4px 10px rgba(0,0,0,0.1); background: #000;">
+                    <video id="favVideo" controls style="width: 100%; display: block;">
+                        <source src="https://files.catbox.moe/gea847.mp4" type="video/mp4">
+                        Browser kamu tidak mendukung pemutar video ini.
+                    </video>
+                </div>
+                <p style="font-size: 0.85rem; color: #999; margin-top: 10px;"> Klik tombol play nya yaa sayangg</p>
+            </div>
+            <button class="back-btn" onclick="goToPage('page2')">TAP TO BACK</button>
+        </div>
+    
+
+
+    <script>
+        // Fungsi untuk handle klik amplop pertama kali
+        function openEnvelope() {
+            // Putar musik latar
+            const music = document.getElementById('bgMusic');
+            music.play().catch(error => {
+                console.log("Autoplay dicegah oleh browser, tapi musik akan tetap dicoba jalan.");
+            });
+
+            // Pindah ke menu utama (Page 2)
+            goToPage('page2');
+        }
+
+        // Fungsi navigasi antar halaman tanpa reload
+        function goToPage(pageId) {
+            // Sembunyikan semua halaman terlebih dahulu
+            const pages = document.querySelectorAll('.page');
+            pages.forEach(page => {
+                page.classList.remove('active');
+            });
+
+            // Tampilkan halaman tujuan
+            const targetPage = document.getElementById(pageId);
+            if (targetPage) {
+                targetPage.classList.add('active');
+            }
+        }
+    </script>
+</body>
+</html>
